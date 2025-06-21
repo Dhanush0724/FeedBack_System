@@ -1,0 +1,14 @@
+<p>feedback works!</p>
+<!-- feedback/feedback.component.html -->
+<div class="p-4 max-w-lg mx-auto">
+  <h2 class="text-xl font-semibold mb-4">Give Feedback</h2>
+  <input [(ngModel)]="form.employee_id" placeholder="Employee ID" class="w-full p-2 mb-3 border rounded" />
+  <textarea [(ngModel)]="form.strengths" placeholder="Strengths" class="w-full p-2 mb-3 border rounded"></textarea>
+  <textarea [(ngModel)]="form.improvements" placeholder="Improvements" class="w-full p-2 mb-3 border rounded"></textarea>
+  <select [(ngModel)]="form.sentiment" class="w-full p-2 mb-3 border rounded">
+    <option value="positive">Positive</option>
+    <option value="neutral">Neutral</option>
+    <option value="negative">Negative</option>
+  </select>
+  <button (click)="submit()" class="bg-green-600 text-white px-4 py-2 rounded">Submit</button>
+</div>

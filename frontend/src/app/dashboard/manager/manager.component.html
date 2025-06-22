@@ -21,6 +21,10 @@
       <td>{{ fb.employee_id }}</td>
       <td>{{ fb.sentiment }}</td>
       <td>
+        <span *ngIf="fb.acknowledged">✅ Acknowledged</span>
+        <span *ngIf="!fb.acknowledged">❌ Not Acknowledged</span>
+      </td>
+      <td>
         <button (click)="selectFeedback(fb)">✏️ Edit</button>
         <button (click)="deleteFeedback(fb.id)">🗑️ Delete</button>
       </td>
@@ -55,4 +59,28 @@
 
 <hr>
 
+<h2>👥 Team Feedback Summary</h2>
+<table *ngIf="teamSummary().length > 0; else noTeamData" border="1" style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Total Feedbacks</th>
+      <th>👍 Positive</th>
+      <th>😐 Neutral</th>
+      <th>👎 Negative</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of teamSummary()">
+      <td>{{ emp.employee_name }} (ID: {{ emp.employee_id }})</td>
+      <td>{{ emp.total_feedbacks }}</td>
+      <td>{{ emp.sentiments.positive }}</td>
+      <td>{{ emp.sentiments.neutral }}</td>
+      <td>{{ emp.sentiments.negative }}</td>
+    </tr>
+  </tbody>
+</table>
 
+<ng-template #noTeamData>
+  <p>No team feedback summary available.</p>
+</ng-template>

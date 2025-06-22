@@ -2,6 +2,7 @@ from pydantic import BaseModel, EmailStr
 from enum import Enum
 from typing import Optional
 from datetime import datetime
+
 class RoleEnum(str, Enum):
     manager = "manager"
     employee = "employee"
@@ -31,13 +32,21 @@ class FeedbackCreate(BaseModel):
     strengths: str
     improvements: str
     sentiment: SentimentEnum
+    acknowledged: Optional[bool] = False
 
-class FeedbackOut(FeedbackCreate):
+class FeedbackOut(BaseModel):
     id: int
+    employee_id: int
     manager_id: int
+    strengths: str
+    improvements: str
+    sentiment: SentimentEnum
     created_at: datetime
+    acknowledged: Optional[bool] = False
+
     class Config:
         orm_mode = True
+
 class AcknowledgementOut(BaseModel):
     feedback_id: int
     employee_id: int

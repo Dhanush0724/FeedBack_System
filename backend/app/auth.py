@@ -33,6 +33,7 @@ def get_current_user(token: HTTPAuthorizationCredentials = Depends(oauth2_scheme
     )
     try:
         payload = jwt.decode(token.credentials, SECRET_KEY, algorithms=[ALGORITHM])
+        print("Decoded JWT:", payload)
         user_id = payload.get("sub")
         if user_id is None:
             raise credentials_exception

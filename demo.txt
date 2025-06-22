@@ -1,18 +1,46 @@
 uvicorn app.main:app --reload
 
 {
-  "name": "Bob Employee",
-  "email": "bob.employee@example.com",
-  "password": "employee123",
+  "name": "Ghost Employee",
+  "email": "ghost.employee@example.com",
+  "password": "ghostemployee123",
   "role": "employee",
-  "manager_id": 3
+  "manager_id": 6
 }
+
+ghost employte id is = == 7
 
 {
   "name": "James Manager",
   "email": "james.manager@example.com",
   "password": "jamesManager123",
   "role": "manager"
+}
+
+james id is =  6
+
+
+backend respoonse of get my feedback get method
+[
+  {
+    "employee_id": 7,
+    "strengths": "rfhd",
+    "improvements": "trgjhn",
+    "sentiment": "positive",
+    "id": 4,
+    "manager_id": 6,
+    "created_at": "2025-06-22T07:42:18.400624"
+  }
+]
+
+afeter update put{
+  "employee_id": 7,
+  "strengths": "bunking in office hours",
+  "improvements": "get out my office",
+  "sentiment": "negative",
+  "id": 4,
+  "manager_id": 6,
+  "created_at": "2025-06-22T07:42:18.400624"
 }
 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2IiwiZXhwIjoxNzUwNTE2MTk0fQ.80Otsgg0nzAhKMG2Qjspc_CRsY-hqZDkhB2Ka9zr2mk

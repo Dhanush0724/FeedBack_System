@@ -1,0 +1,18 @@
+uvicorn app.main:app --reload
+
+{
+  "name": "Bob Employee",
+  "email": "bob.employee@example.com",
+  "password": "employee123",
+  "role": "employee",
+  "manager_id": 3
+}
+
+{
+  "name": "James Manager",
+  "email": "james.manager@example.com",
+  "password": "jamesManager123",
+  "role": "manager"
+}
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2IiwiZXhwIjoxNzUwNTE2MTk0fQ.80Otsgg0nzAhKMG2Qjspc_CRsY-hqZDkhB2Ka9zr2mk

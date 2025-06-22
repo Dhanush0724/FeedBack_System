@@ -20,19 +20,18 @@ export class AuthService {
 }
 
 
-  saveToken(token: string) {
-    localStorage.setItem('token', token);
-  }
-
+ saveToken(token: string, user: any) {
+  localStorage.setItem('token', token);
+  localStorage.setItem('user', JSON.stringify(user));
+}
   getToken(): string | null {
     return localStorage.getItem('token');
   }
 
   getUser() {
-    const token = this.getToken();
-    if (!token) return null;
-    return jwtDecode<any>(token);
-  }
+  const user = localStorage.getItem('user');
+  return user ? JSON.parse(user) : null;
+}
 
   logout() {
     localStorage.removeItem('token');

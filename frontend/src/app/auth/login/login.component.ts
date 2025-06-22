@@ -17,13 +17,14 @@ export class LoginComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
   login() {
-    this.auth.login(this.email, this.password).subscribe({
-      next: (res: any) => {
-        this.auth.saveToken(res.access_token);
-        const role = this.auth.getUser()?.role;
-        this.router.navigate([role === 'manager' ? '/manager' : '/employee']);
-      },
-      error: (err: any) => alert('Invalid credentials'),
-    });
-  }
+  this.auth.login(this.email, this.password).subscribe({
+    next: (res: any) => {
+      this.auth.saveToken(res.access_token, res.user); // <-- updated
+      const role = res.user.role?.toLowerCase(); // normalize case
+      this.router.navigate([role === 'manager' ? '/manager' : '/employee']);
+    },
+    error: (err: any) => alert('Invalid credentials'),
+  });
+}
+
 }

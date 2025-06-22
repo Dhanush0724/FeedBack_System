@@ -1,0 +1,25 @@
+<p>manager-feedback works!</p>
+<h2>Give Feedback</h2>
+
+<form (ngSubmit)="submitFeedback()" #form="ngForm">
+  <label>Employee ID:</label>
+  <input type="number" [(ngModel)]="employee_id" name="employee_id" required>
+
+  <label>Strengths:</label>
+  <textarea [(ngModel)]="strengths" name="strengths" required></textarea>
+
+  <label>Improvements:</label>
+  <textarea [(ngModel)]="improvements" name="improvements" required></textarea>
+
+  <label>Sentiment:</label>
+  <select [(ngModel)]="sentiment" name="sentiment">
+    <option value="positive">Positive</option>
+    <option value="neutral">Neutral</option>
+    <option value="negative">Negative</option>
+  </select>
+
+  <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="feedbackSuccess" style="color: green;">✅ Feedback submitted!</div>
+<div *ngIf="feedbackError" style="color: red;">❌ Failed to submit feedback.</div>

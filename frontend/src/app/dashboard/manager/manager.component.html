@@ -1,1 +1,58 @@
-<p>manager works!</p>
+<p>✅ Manager Dashboard Works!</p>
+
+<h2>📋 Feedback Form</h2>
+<app-manager-feedback></app-manager-feedback>
+
+<hr>
+
+<h2>📝 Feedback Given</h2>
+<table *ngIf="feedbackList().length > 0; else noData" border="1" style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Employee ID</th>
+      <th>Sentiment</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fb of feedbackList()">
+      <td>{{ fb.id }}</td>
+      <td>{{ fb.employee_id }}</td>
+      <td>{{ fb.sentiment }}</td>
+      <td>
+        <button (click)="selectFeedback(fb)">✏️ Edit</button>
+        <button (click)="deleteFeedback(fb.id)">🗑️ Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noData>
+  <p>No feedback found.</p>
+</ng-template>
+
+<!-- Edit form -->
+<div *ngIf="selectedFeedback()" style="margin-top: 2rem;">
+  <h3>✏️ Edit Feedback</h3>
+
+  <label>Strengths:</label><br>
+  <textarea [(ngModel)]="editedStrengths" rows="3" cols="50"></textarea><br><br>
+
+  <label>Improvements:</label><br>
+  <textarea [(ngModel)]="editedImprovements" rows="3" cols="50"></textarea><br><br>
+
+  <label>Sentiment:</label><br>
+  <select [(ngModel)]="editedSentiment">
+    <option value="positive">Positive</option>
+    <option value="neutral">Neutral</option>
+    <option value="negative">Negative</option>
+  </select><br><br>
+
+  <button (click)="saveEdits()">💾 Save</button>
+  <button (click)="cancelEdit()">❌ Cancel</button>
+</div>
+
+<hr>
+
+

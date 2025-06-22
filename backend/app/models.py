@@ -20,6 +20,7 @@ class User(Base):
     email = Column(String, unique=True)
     hashed_password = Column(String)
     role = Column(Enum(RoleEnum))
+    
     manager_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
 class Feedback(Base):
@@ -30,6 +31,7 @@ class Feedback(Base):
     strengths = Column(Text)
     improvements = Column(Text)
     sentiment = Column(Enum(SentimentEnum))
+    
     created_at = Column(DateTime, default=datetime.utcnow)
 
 class Acknowledgement(Base):
@@ -37,3 +39,5 @@ class Acknowledgement(Base):
     id = Column(Integer, primary_key=True)
     feedback_id = Column(Integer, ForeignKey("feedback.id"))
     employee_id = Column(Integer, ForeignKey("users.id"))
+
+

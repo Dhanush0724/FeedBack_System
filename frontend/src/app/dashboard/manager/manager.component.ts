@@ -26,6 +26,8 @@ interface TeamSummary {
   };
 }
 
+
+
 @Component({
   standalone: true,
   selector: 'app-manager-dashboard',
@@ -42,6 +44,7 @@ export class ManagerComponent {
   editedStrengths = '';
   editedImprovements = '';
   editedSentiment = 'positive';
+ 
 
   constructor() {
     this.fetchFeedbacks();
@@ -54,11 +57,7 @@ export class ManagerComponent {
 
   fetchFeedbacks() {
     const token = this.getToken();
-    if (!token) {
-      console.warn('Token missing. User may not be logged in.');
-      return;
-    }
-
+    if (!token) return;
     this.http.get<Feedback[]>('http://localhost:8000/feedback/my', {
       headers: { Authorization: `Bearer ${token}` },
     }).subscribe({
@@ -69,11 +68,7 @@ export class ManagerComponent {
 
   fetchTeamSummary() {
     const token = this.getToken();
-    if (!token) {
-      console.warn('Token missing. User may not be logged in.');
-      return;
-    }
-
+    if (!token) return;
     this.http.get<TeamSummary[]>('http://localhost:8000/feedback/manager/team-feedback-summary', {
       headers: { Authorization: `Bearer ${token}` },
     }).subscribe({
@@ -90,26 +85,25 @@ export class ManagerComponent {
   }
 
   saveEdits() {
-  const fb = this.selectedFeedback();
-  const token = this.getToken();
-  if (!fb || !token) return;
+    const fb = this.selectedFeedback();
+    const token = this.getToken();
+    if (!fb || !token) return;
 
-  this.http.put(`http://localhost:8000/feedback/${fb.id}`, {
-    employee_id: fb.employee_id,  // Add this line!
-    strengths: this.editedStrengths,
-    improvements: this.editedImprovements,
-    sentiment: this.editedSentiment
-  }, {
-    headers: { Authorization: `Bearer ${token}` },
-  }).subscribe({
-    next: () => {
-      this.fetchFeedbacks();
-      this.selectedFeedback.set(null);
-    },
-    error: err => console.error('Failed to update feedback:', err)
-  });
-}
-
+    this.http.put(`http://localhost:8000/feedback/${fb.id}`, {
+      employee_id: fb.employee_id,
+      strengths: this.editedStrengths,
+      improvements: this.editedImprovements,
+      sentiment: this.editedSentiment
+    }, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).subscribe({
+      next: () => {
+        this.fetchFeedbacks();
+        this.selectedFeedback.set(null);
+      },
+      error: err => console.error('Failed to update feedback:', err)
+    });
+  }
 
   cancelEdit() {
     this.selectedFeedback.set(null);
@@ -126,4 +120,6 @@ export class ManagerComponent {
       error: err => console.error('Failed to delete feedback:', err)
     });
   }
+
+  
 }

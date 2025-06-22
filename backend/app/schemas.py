@@ -52,3 +52,6 @@ class AcknowledgementOut(BaseModel):
     employee_id: int
     class Config:
         orm_mode = True
+
+
+

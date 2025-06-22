@@ -5,31 +5,33 @@ uvicorn app.main:app --reload
   "email": "ghost.employee@example.com",
   "password": "ghostemployee123",
   "role": "employee",
-  "manager_id": 6
+  "manager_id": 1
 }
 
-ghost employte id is = == 7
+ghost employte id is = == 2
 
 {
   "name": "James Manager",
   "email": "james.manager@example.com",
   "password": "jamesManager123",
-  "role": "manager"
+  "role": "manager",
+  "manager_id": 1
 }
 
-james id is =  6
-
+james id is =  1
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzUwNjA1ODM1fQ.6rZ1xzuyd2DkHZEA-IdGs4n-A5Qh-AwCGkYrlFE5FRE
 
 backend respoonse of get my feedback get method
 [
   {
-    "employee_id": 7,
-    "strengths": "rfhd",
-    "improvements": "trgjhn",
+    "id": 1,
+    "employee_id": 2,
+    "manager_id": 1,
+    "strengths": "Strong communication skills and timely project delivery.",
+    "improvements": "Could improve time management during sprint planning.",
     "sentiment": "positive",
-    "id": 4,
-    "manager_id": 6,
-    "created_at": "2025-06-22T07:42:18.400624"
+    "created_at": "2025-06-22T14:31:12.512925",
+    "acknowledged": true
   }
 ]
 

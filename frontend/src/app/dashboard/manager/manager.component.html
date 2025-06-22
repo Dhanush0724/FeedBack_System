@@ -24,6 +24,8 @@
         <span *ngIf="fb.acknowledged">✅ Acknowledged</span>
         <span *ngIf="!fb.acknowledged">❌ Not Acknowledged</span>
       </td>
+      
+
       <td>
         <button (click)="selectFeedback(fb)">✏️ Edit</button>
         <button (click)="deleteFeedback(fb.id)">🗑️ Delete</button>

@@ -1,4 +1,47 @@
-<p>employee works!</p>
-<!-- <td>
-  <button (click)="acknowledge(fb.id)">✅ Acknowledge</button>
-</td> -->
+<h2>👩‍💻 Employee Feedback</h2>
+
+<label>Filter by Sentiment:</label>
+<select [ngModel]="sentimentFilter()" (ngModelChange)="sentimentFilter.set($event)">
+  <option value="all">All</option>
+  <option value="positive">Positive</option>
+  <option value="neutral">Neutral</option>
+  <option value="negative">Negative</option>
+</select>
+
+<table *ngIf="filteredFeedbacks().length > 0; else noFeedback" border="1" style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Strengths</th>
+      <th>Improvements</th>
+      <th>Sentiment</th>
+      <th>Date</th>
+      <th>Acknowledgement</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let fb of filteredFeedbacks()">
+      <tr>
+        <td>{{ fb.id }}</td>
+        <td>{{ fb.strengths }}</td>
+        <td>{{ fb.improvements }}</td>
+        <td>{{ fb.sentiment }}</td>
+        <td>{{ fb.created_at | date: 'short' }}</td>
+        <td>
+          <span *ngIf="fb.acknowledged">✅ Acknowledged</span>
+          <button *ngIf="!fb.acknowledged" (click)="acknowledgeFeedback(fb.id)">Acknowledge</button>
+        </td>
+        <td>
+          <button (click)="activeFeedbackId.set(fb.id)">💬 Comment</button>
+        </td>
+      </tr>
+
+     
+    </ng-container>
+  </tbody>
+</table>
+
+<ng-template #noFeedback>
+  <p>No feedback found.</p>
+</ng-template>

@@ -1,14 +1,17 @@
-<h2>👩‍💻 Employee Feedback</h2>
+<h2 class="title">👩‍💻 Employee Feedback</h2>
+<h3 *ngIf="employeeInfo as emp" class="welcome">Welcome, {{ emp.name }}</h3>
 
-<label>Filter by Sentiment:</label>
-<select [ngModel]="sentimentFilter()" (ngModelChange)="sentimentFilter.set($event)">
-  <option value="all">All</option>
-  <option value="positive">Positive</option>
-  <option value="neutral">Neutral</option>
-  <option value="negative">Negative</option>
-</select>
+<div class="filter-section">
+  <label for="sentimentFilter">Filter by Sentiment:</label>
+  <select id="sentimentFilter" [ngModel]="sentimentFilter()" (ngModelChange)="sentimentFilter.set($event)">
+    <option value="all">All</option>
+    <option value="positive">Positive</option>
+    <option value="neutral">Neutral</option>
+    <option value="negative">Negative</option>
+  </select>
+</div>
 
-<table *ngIf="filteredFeedbacks().length > 0; else noFeedback" border="1" style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+<table *ngIf="filteredFeedbacks().length > 0; else noFeedback" class="feedback-table">
   <thead>
     <tr>
       <th>ID</th>
@@ -17,7 +20,6 @@
       <th>Sentiment</th>
       <th>Date</th>
       <th>Acknowledgement</th>
-      <th>Comment</th>
     </tr>
   </thead>
   <tbody>
@@ -26,22 +28,17 @@
         <td>{{ fb.id }}</td>
         <td>{{ fb.strengths }}</td>
         <td>{{ fb.improvements }}</td>
-        <td>{{ fb.sentiment }}</td>
+        <td [ngClass]="fb.sentiment">{{ fb.sentiment }}</td>
         <td>{{ fb.created_at | date: 'short' }}</td>
         <td>
-          <span *ngIf="fb.acknowledged">✅ Acknowledged</span>
+          <span *ngIf="fb.acknowledged" class="acknowledged">✅ Acknowledged</span>
           <button *ngIf="!fb.acknowledged" (click)="acknowledgeFeedback(fb.id)">Acknowledge</button>
         </td>
-        <td>
-          <button (click)="activeFeedbackId.set(fb.id)">💬 Comment</button>
-        </td>
       </tr>
-
-     
     </ng-container>
   </tbody>
 </table>
 
 <ng-template #noFeedback>
-  <p>No feedback found.</p>
+  <p class="no-feedback">No feedback found.</p>
 </ng-template>

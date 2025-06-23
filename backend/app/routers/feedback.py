@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-
+from sqlalchemy.orm import joinedload
 from app import models, schemas, auth
 
 router = APIRouter(prefix="/feedback", tags=["Feedback"])
@@ -56,13 +56,18 @@ def get_my_feedback(
         return feedbacks
 
     elif current_user.role == "manager":
-        all_feedbacks = db.query(models.Feedback).filter(models.Feedback.manager_id == current_user.id).all()
+        all_feedbacks = db.query(models.Feedback).options(joinedload(models.Feedback.employee)).filter(
+            models.Feedback.manager_id == current_user.id
+        ).all()
+
         for fb in all_feedbacks:
             fb.acknowledged = db.query(models.Acknowledgement).filter_by(
-                feedback_id=fb.id, employee_id=fb.employee_id
+                feedback_id=fb.id,
+                employee_id=fb.employee_id
             ).first() is not None
-            feedbacks.append(fb)  # Not needed for managers
-        return all_feedbacks
+            feedbacks.append(fb)
+        return feedbacks
+
 
 # ─────────────────────────────────────────────
 # 3. Manager Edits Feedback
@@ -145,3 +150,16 @@ def acknowledge_feedback(
     return {"msg": "Feedback acknowledged"}
 
 
+@router.delete("/{feedback_id}")
+def delete_feedback(
+    feedback_id: int,
+    db: Session = Depends(auth.get_db),
+    current_user: models.User = Depends(auth.get_current_user)
+):
+    fb = db.query(models.Feedback).filter(models.Feedback.id == feedback_id).first()
+    if not fb or fb.manager_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Unauthorized to delete this feedback.")
+
+    db.delete(fb)
+    db.commit()
+    return {"msg": "Feedback deleted"}

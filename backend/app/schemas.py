@@ -18,6 +18,12 @@ class UserCreate(BaseModel):
     password: str
     role: RoleEnum
     manager_id: Optional[int] = None
+class EmployeeInfo(BaseModel):
+    id: int
+    name: str
+
+    class Config:
+        orm_mode = True
 
 class UserOut(BaseModel):
     id: int
@@ -43,6 +49,7 @@ class FeedbackOut(BaseModel):
     sentiment: SentimentEnum
     created_at: datetime
     acknowledged: Optional[bool] = False
+    employee: Optional[UserOut]
 
     class Config:
         orm_mode = True
@@ -52,6 +59,5 @@ class AcknowledgementOut(BaseModel):
     employee_id: int
     class Config:
         orm_mode = True
-
 
 

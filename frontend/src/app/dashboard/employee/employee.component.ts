@@ -13,6 +13,11 @@ interface Feedback {
   acknowledged: boolean;
 }
 
+interface Employee {
+  id: number;
+  name: string;
+}
+
 @Component({
   standalone: true,
   selector: 'app-employee-dashboard',
@@ -23,16 +28,34 @@ interface Feedback {
 export class EmployeeComponent {
   private http = inject(HttpClient);
 
+  employee = signal<Employee | null>(null);  // ✅ to hold employee info
   activeFeedbackId = signal<number | null>(null);
   feedbackList = signal<Feedback[]>([]);
   sentimentFilter = signal<string>('all');
 
   constructor() {
+    this.fetchEmployeeInfo();
     this.fetchFeedbacks();
+  }
+
+  get employeeInfo() {
+    return this.employee();
   }
 
   private getToken(): string | null {
     return typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  }
+
+  fetchEmployeeInfo() {
+    const token = this.getToken();
+    if (!token) return;
+
+    this.http.get<Employee>('http://localhost:8000/users/me', {
+      headers: { Authorization: `Bearer ${token}` },
+    }).subscribe({
+      next: data => this.employee.set(data),
+      error: err => console.error('Failed to fetch employee info:', err)
+    });
   }
 
   fetchFeedbacks() {
@@ -66,6 +89,4 @@ export class EmployeeComponent {
     if (filter === 'all') return allFeedback;
     return allFeedback.filter(fb => fb.sentiment === filter);
   });
-
-  
 }

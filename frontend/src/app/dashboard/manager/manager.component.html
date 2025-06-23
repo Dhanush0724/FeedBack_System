@@ -1,17 +1,17 @@
-<p>✅ Manager Dashboard Works!</p>
-
-<h2>📋 Feedback Form</h2>
+<h2 class="section-title">📋 Feedback Form</h2>
 <app-manager-feedback></app-manager-feedback>
 
-<hr>
+<hr class="divider">
 
-<h2>📝 Feedback Given</h2>
-<table *ngIf="feedbackList().length > 0; else noData" border="1" style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+<h2 class="section-title">📝 Feedback Given</h2>
+
+<table *ngIf="feedbackList().length > 0; else noData" class="styled-table">
   <thead>
     <tr>
       <th>ID</th>
       <th>Employee ID</th>
       <th>Sentiment</th>
+      <th>Status</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -21,25 +21,26 @@
       <td>{{ fb.employee_id }}</td>
       <td>{{ fb.sentiment }}</td>
       <td>
-        <span *ngIf="fb.acknowledged">✅ Acknowledged</span>
-        <span *ngIf="!fb.acknowledged">❌ Not Acknowledged</span>
+        <span [ngClass]="fb.acknowledged ? 'ack' : 'nack'">
+          {{ fb.acknowledged ? '✅ Acknowledged' : '❌ Not Acknowledged' }}
+        </span>
       </td>
-      
-
       <td>
-        <button (click)="selectFeedback(fb)">✏️ Edit</button>
-        <button (click)="deleteFeedback(fb.id)">🗑️ Delete</button>
+        <button class="action-btn edit" (click)="selectFeedback(fb)">✏️ Edit</button>
+        <button class="action-btn delete" (click)="deleteFeedback(fb.id)">🗑️ Delete</button>
+
+
       </td>
     </tr>
   </tbody>
 </table>
 
 <ng-template #noData>
-  <p>No feedback found.</p>
+  <p class="no-data">No feedback found.</p>
 </ng-template>
 
 <!-- Edit form -->
-<div *ngIf="selectedFeedback()" style="margin-top: 2rem;">
+<div *ngIf="selectedFeedback()" class="edit-form">
   <h3>✏️ Edit Feedback</h3>
 
   <label>Strengths:</label><br>
@@ -55,14 +56,15 @@
     <option value="negative">Negative</option>
   </select><br><br>
 
-  <button (click)="saveEdits()">💾 Save</button>
-  <button (click)="cancelEdit()">❌ Cancel</button>
+  <button class="action-btn save" (click)="saveEdits()">💾 Save</button>
+  <button class="action-btn cancel" (click)="cancelEdit()">❌ Cancel</button>
+
 </div>
 
-<hr>
+<hr class="divider">
 
-<h2>👥 Team Feedback Summary</h2>
-<table *ngIf="teamSummary().length > 0; else noTeamData" border="1" style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+<h2 class="section-title">👥 Team Feedback Summary</h2>
+<table *ngIf="teamSummary().length > 0; else noTeamData" class="styled-table">
   <thead>
     <tr>
       <th>Employee</th>
@@ -84,5 +86,5 @@
 </table>
 
 <ng-template #noTeamData>
-  <p>No team feedback summary available.</p>
+  <p class="no-data">No team feedback summary available.</p>
 </ng-template>

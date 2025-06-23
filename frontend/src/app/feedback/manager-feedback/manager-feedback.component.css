@@ -1,0 +1,75 @@
+.form-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.toggle-btn {
+  margin-bottom: 1rem;
+  background-color: #673ab7;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background-color: #512da8;
+}
+
+.form-container {
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feedback-form label {
+  font-weight: bold;
+}
+
+.feedback-form input,
+.feedback-form textarea,
+.feedback-form select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.feedback-form button[type="submit"] {
+  background-color: #2196f3;
+  color: white;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.feedback-form button[type="submit"]:hover {
+  background-color: #1976d2;
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 1rem;
+}

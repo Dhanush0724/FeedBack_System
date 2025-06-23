@@ -31,7 +31,7 @@ class Feedback(Base):
     strengths = Column(Text)
     improvements = Column(Text)
     sentiment = Column(Enum(SentimentEnum))
-    
+    employee = relationship("User", foreign_keys=[employee_id])
     created_at = Column(DateTime, default=datetime.utcnow)
 
 class Acknowledgement(Base):

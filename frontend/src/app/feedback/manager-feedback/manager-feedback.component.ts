@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   standalone: true,
   selector: 'app-manager-feedback',
   imports: [CommonModule, FormsModule],
-  templateUrl: './manager-feedback.component.html'
+  templateUrl: './manager-feedback.component.html',
+  styleUrls: ['./manager-feedback.component.css'],
 })
 export class ManagerFeedbackComponent {
   private http = inject(HttpClient);
@@ -21,6 +22,7 @@ export class ManagerFeedbackComponent {
 
   feedbackSuccess = false;
   feedbackError = false;
+  showForm = false;
 
   submitFeedback() {
     const token = localStorage.getItem('token');
@@ -38,14 +40,20 @@ export class ManagerFeedbackComponent {
       next: () => {
         this.feedbackSuccess = true;
         this.feedbackError = false;
-        this.strengths = '';
-        this.improvements = '';
-        this.sentiment = 'positive';
+        this.resetForm();
+        this.showForm = false; // 👈 hide form after submit
       },
       error: () => {
         this.feedbackSuccess = false;
         this.feedbackError = true;
       }
     });
+  }
+
+  resetForm() {
+    this.employee_id = 0;
+    this.strengths = '';
+    this.improvements = '';
+    this.sentiment = 'positive';
   }
 }

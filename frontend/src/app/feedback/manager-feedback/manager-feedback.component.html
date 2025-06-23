@@ -1,25 +1,30 @@
-<p>manager-feedback works!</p>
-<h2>Give Feedback</h2>
+<h2 class="form-title">Give Feedback</h2>
 
-<form (ngSubmit)="submitFeedback()" #form="ngForm">
-  <label>Employee ID:</label>
-  <input type="number" [(ngModel)]="employee_id" name="employee_id" required>
+<button class="toggle-btn" (click)="showForm = !showForm">
+  {{ showForm ? '❌ Cancel' : '📝 Start Giving Feedback' }}
+</button>
 
-  <label>Strengths:</label>
-  <textarea [(ngModel)]="strengths" name="strengths" required></textarea>
+<div *ngIf="showForm" class="form-container">
+  <form (ngSubmit)="submitFeedback()" #form="ngForm" class="feedback-form">
+    <label>Employee ID:</label>
+    <input type="number" [(ngModel)]="employee_id" name="employee_id" required>
 
-  <label>Improvements:</label>
-  <textarea [(ngModel)]="improvements" name="improvements" required></textarea>
+    <label>Strengths:</label>
+    <textarea [(ngModel)]="strengths" name="strengths" required></textarea>
 
-  <label>Sentiment:</label>
-  <select [(ngModel)]="sentiment" name="sentiment">
-    <option value="positive">Positive</option>
-    <option value="neutral">Neutral</option>
-    <option value="negative">Negative</option>
-  </select>
+    <label>Improvements:</label>
+    <textarea [(ngModel)]="improvements" name="improvements" required></textarea>
 
-  <button type="submit">Submit</button>
-</form>
+    <label>Sentiment:</label>
+    <select [(ngModel)]="sentiment" name="sentiment">
+      <option value="positive">Positive</option>
+      <option value="neutral">Neutral</option>
+      <option value="negative">Negative</option>
+    </select>
 
-<div *ngIf="feedbackSuccess" style="color: green;">✅ Feedback submitted!</div>
-<div *ngIf="feedbackError" style="color: red;">❌ Failed to submit feedback.</div>
+    <button type="submit">✅ Submit Feedback</button>
+  </form>
+</div>
+
+<div *ngIf="feedbackSuccess" class="success-message">✅ Feedback submitted!</div>
+<div *ngIf="feedbackError" class="error-message">❌ Failed to submit feedback.</div>

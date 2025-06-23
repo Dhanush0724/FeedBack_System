@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service'; // updated relative p
   selector: 'app-login',
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email = '';

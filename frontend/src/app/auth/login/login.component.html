@@ -1,8 +1,15 @@
-<p>login works!</p>
-<!-- auth/login.component.html -->
-<div class="max-w-md mx-auto mt-20 p-5 border rounded-lg shadow">
-  <h2 class="text-2xl font-semibold mb-4">Login</h2>
-  <input [(ngModel)]="email" placeholder="Email" class="w-full mb-3 p-2 border rounded" />
-  <input [(ngModel)]="password" type="password" placeholder="Password" class="w-full mb-3 p-2 border rounded" />
-  <button (click)="login()" class="bg-blue-500 text-white px-4 py-2 rounded">Login</button>
-</div>
+<div class="container">
+    <h1>Welcome to Lightweight Feedback System</h1>
+    <p class="description">
+      The goal is to enable <strong>structured, ongoing feedback</strong> in a simple, secure, and friendly interface.
+    </p>
+
+    <div class="login-box">
+      <h2>Login</h2>
+      <input [(ngModel)]="email" placeholder="Email" class="input" />
+      <input [(ngModel)]="password" type="password" placeholder="Password" class="input" />
+      <button (click)="login()" class="btn">Login</button>
+    </div>
+
+    
+  </div>

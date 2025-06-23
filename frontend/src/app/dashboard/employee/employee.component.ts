@@ -2,6 +2,8 @@ import { Component, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 interface Feedback {
   id: number;
@@ -89,4 +91,20 @@ export class EmployeeComponent {
     if (filter === 'all') return allFeedback;
     return allFeedback.filter(fb => fb.sentiment === filter);
   });
+
+  downloadFeedbackAsPDF() {
+  const content = document.getElementById('feedbackContentToDownload');
+  if (!content) return;
+
+  html2canvas(content).then(canvas => {
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.save('feedback-report.pdf');
+  });
+}
 }

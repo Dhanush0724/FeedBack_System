@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
 import { ManagerFeedbackComponent } from '../../feedback/manager-feedback/manager-feedback.component';
-
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 interface Feedback {
   id: number;
   employee_id: number;
@@ -120,6 +121,20 @@ export class ManagerComponent {
       error: err => console.error('Failed to delete feedback:', err)
     });
   }
+downloadFeedbackAsPDF() {
+  const content = document.getElementById('feedbackContentToDownload');
+  if (!content) return;
 
+  html2canvas(content).then(canvas => {
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.save('feedback-report.pdf');
+  });
+}
   
 }

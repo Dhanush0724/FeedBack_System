@@ -46,3 +46,61 @@ afeter update put{
 }
 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2IiwiZXhwIjoxNzUwNTE2MTk0fQ.80Otsgg0nzAhKMG2Qjspc_CRsY-hqZDkhB2Ka9zr2mk
+
+
+
+manager 2 :  [3]
+
+{
+  "name": "Ravindra",
+  "email": "ravindra.manager@example.com",
+  "password": "ravindraManager123",
+  "role": "manager",
+  "manager_id": 2
+}
+
+manager 3 : [4]
+{
+  "name": "Hemanth",
+  "email": "hemanth.manager@example.com",
+  "password": "hemanthManager123",
+  "role": "manager",
+  "manager_id": 3
+}
+
+
+employee 2 [5]
+{
+  "name": "Dhanush",
+  "email": "dhanush.employee@example.com",
+  "password": "dhaemployee123",
+  "role": "employee",
+  "manager_id": 3
+}
+
+employee 3 [6]
+{
+  "name": "Sanjay",
+  "email": "Sanjay.employee@example.com",
+  "password": "sanemployee123",
+  "role": "employee",
+  "manager_id": 3
+}
+
+employee 4    [7]
+{
+  "name": "Chandru",
+  "email": "chandru.employee@example.com",
+  "password": "chaemployee123",
+  "role": "employee",
+  "manager_id": 2
+}
+
+
+{
+  "name": "Swathi",
+  "email": "swathi.employee@example.com",
+  "password": "swaemployee123",
+  "role": "employee",
+  "manager_id": 4
+} id : 8

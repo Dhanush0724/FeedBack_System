@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service'; // updated relative path
+import { AuthService } from '../../services/auth.service'; 
 
 @Component({
   standalone: true,
@@ -20,8 +20,8 @@ export class LoginComponent {
   login() {
   this.auth.login(this.email, this.password).subscribe({
     next: (res: any) => {
-      this.auth.saveToken(res.access_token, res.user); // <-- updated
-      const role = res.user.role?.toLowerCase(); // normalize case
+      this.auth.saveToken(res.access_token, res.user); 
+      const role = res.user.role?.toLowerCase(); 
       this.router.navigate([role === 'manager' ? '/manager' : '/employee']);
     },
     error: (err: any) => alert('Invalid credentials'),

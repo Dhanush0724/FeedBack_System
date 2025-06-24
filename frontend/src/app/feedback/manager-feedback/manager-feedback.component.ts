@@ -41,7 +41,7 @@ export class ManagerFeedbackComponent {
         this.feedbackSuccess = true;
         this.feedbackError = false;
         this.resetForm();
-        this.showForm = false; // 👈 hide form after submit
+        this.showForm = false; 
       },
       error: () => {
         this.feedbackSuccess = false;

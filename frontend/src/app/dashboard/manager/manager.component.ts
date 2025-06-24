@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { NgChartsModule } from 'ng2-charts';
 import { ManagerFeedbackComponent } from '../../feedback/manager-feedback/manager-feedback.component';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -32,7 +31,7 @@ interface TeamSummary {
 @Component({
   standalone: true,
   selector: 'app-manager-dashboard',
-  imports: [CommonModule, FormsModule, NgChartsModule, ManagerFeedbackComponent],
+  imports: [CommonModule, FormsModule, ManagerFeedbackComponent],
   templateUrl: './manager.component.html',
   styleUrls: ['./manager.component.css']
 })

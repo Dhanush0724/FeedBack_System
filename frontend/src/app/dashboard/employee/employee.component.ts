@@ -30,7 +30,7 @@ interface Employee {
 export class EmployeeComponent {
   private http = inject(HttpClient);
 
-  employee = signal<Employee | null>(null);  // ✅ to hold employee info
+  employee = signal<Employee | null>(null);  
   activeFeedbackId = signal<number | null>(null);
   feedbackList = signal<Feedback[]>([]);
   sentimentFilter = signal<string>('all');

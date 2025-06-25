@@ -82,34 +82,35 @@ docker run -d -p 8000:8000 feedback-backend
 
 # Now check the frontend link to access application running on : http://localhost:4200
 
-# Optinal if Docker not available 
-In Case if you don't want to use docker
-skips the docker part and continue
-Install dependencies
-pip install -r requirements.txt
+## ⚙️ Optional (If Docker Not Available)
 
-Start the FastAPI server
+If you don't want to use Docker, you can skip the Docker part and continue with the manual setup:
+
+### ✅ Install Dependencies  
+```bash
+pip install -r requirements.txt
+🚀 Start the FastAPI Server
 uvicorn main:app --reload
+
 📍 Backend runs at: http://localhost:8000
 
-# make sure you are running both backend and frontend at two seperate terminal for smooth communication
+💡 Note: Make sure you are running both the backend and frontend in two separate terminals for smooth communication.
+```
+## 🎨 Design Decisions
 
-# 🎨 Design Decisions
-FastAPI was chosen for its speed, type safety, and ease of building APIs with Python.
+- **FastAPI** was chosen for its speed, type safety, and ease of building APIs with Python.
+- **Angular** provides structure, modularity, and strong form handling with built-in guards for routing and role-based UI display.
+- **JWT-based authentication** ensures a secure, stateless session management system.
+- **SQLite** is used for development simplicity. The backend can be easily adapted to **PostgreSQL** for production.
+- **Role-Based Access Control (RBAC)** ensures secure and private feedback viewing/editing.
+- The system is **Dockerized** for consistent backend setup across environments.
 
-Angular provides structure, modularity, and strong form handling with built-in guards for routing and role-based UI display.
+---
 
-JWT-based authentication ensures a secure, stateless session management system.
+### 📽️ Demo
 
-SQLite is used for development simplicity. The backend can be easily adapted to PostgreSQL for production.
+📹 **Video Demo of the Application:**  
+[https://www.loom.com/share/96afbdecef6a4e5b9ba88b17bb3700c0?sid=bb780aa2-f805-43e7-a47c-1f828258dbf3](https://www.loom.com/share/96afbdecef6a4e5b9ba88b17bb3700c0?sid=bb780aa2-f805-43e7-a47c-1f828258dbf3)
 
-Role-based access control (RBAC) ensures secure and private feedback viewing/editing.
-
-The system is Dockerized for consistent backend setup across environments.
-
-📽️ Demo
-
-
-📹 Video Demo of the application : https://www.loom.com/share/96afbdecef6a4e5b9ba88b17bb3700c0?sid=bb780aa2-f805-43e7-a47c-1f828258dbf3
-
-📹 Video walkthrough for the codebase : https://www.loom.com/share/4a47cb4ca1f74c51aac37069dc0770b5?sid=c545d024-e9b2-467d-b9f5-1251a2098033
+📹 **Video Walkthrough of the Codebase:**  
+[https://www.loom.com/share/4a47cb4ca1f74c51aac37069dc0770b5?sid=c545d024-e9b2-467d-b9f5-1251a2098033](https://www.loom.com/share/4a47cb4ca1f74c51aac37069dc0770b5?sid=c545d024-e9b2-467d-b9f5-1251a2098033)

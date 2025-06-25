@@ -105,8 +105,8 @@ Role-based access control (RBAC) ensures secure and private feedback viewing/edi
 The system is Dockerized for consistent backend setup across environments.
 
 📽️ Demo
-🔗 Live App: [Your deployment link here]
 
-📹 App Demo (≤5 min): [YouTube/Loom Link]
 
-📹 Code Walkthrough (≤10 min): [YouTube/Loom Link]
+📹 Video Demo of the application : https://www.loom.com/share/96afbdecef6a4e5b9ba88b17bb3700c0?sid=bb780aa2-f805-43e7-a47c-1f828258dbf3
+
+📹 Video walkthrough for the codebase : https://www.loom.com/share/4a47cb4ca1f74c51aac37069dc0770b5?sid=c545d024-e9b2-467d-b9f5-1251a2098033

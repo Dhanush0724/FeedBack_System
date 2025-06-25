@@ -80,8 +80,11 @@ docker build -t feedback-backend .
 # Run container
 docker run -d -p 8000:8000 feedback-backend
 
-In Case if you don't want to use docker
+# Now check the frontend link to access application running on : http://localhost:4200
 
+# Optinal if Docker not available 
+In Case if you don't want to use docker
+skips the docker part and continue
 Install dependencies
 pip install -r requirements.txt
 
